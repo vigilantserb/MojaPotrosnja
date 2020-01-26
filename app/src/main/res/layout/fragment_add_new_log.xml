@@ -1,14 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".screens.AddNewLogFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Add new log" />
+        android:id="@+id/header_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Unos novog zapisa"
+        android:textAlignment="center"
+        android:textColor="@color/color_dark_grey"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/pick_car_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Odaberi automobil:"
+        android:textColor="@color/color_dark_grey"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/header_text" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/pick_car_tv"
+        app:layout_constraintEnd_toStartOf="@+id/add_car"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toEndOf="@+id/pick_car_tv"
+        app:layout_constraintTop_toTopOf="@+id/pick_car_tv"
+        app:layout_constraintVertical_bias="0.481" />
+
+    <ImageView
+        android:id="@+id/add_car"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_add"
+        android:tint="@color/color_orange"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner1"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintStart_toEndOf="@+id/spinner1"
+        app:layout_constraintTop_toTopOf="@+id/spinner1" />
+
+    <TextView
+        android:id="@+id/fuel_amount_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Unesi kolicinu: "
+        android:textColor="@color/color_dark_grey"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/pick_car_tv" />
+
+    <EditText
+        android:id="@+id/fuel_amount_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fuel_amount_tv"
+        app:layout_constraintEnd_toStartOf="@+id/fuel_amount_type_tv"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fuel_amount_tv"
+        app:layout_constraintTop_toTopOf="@+id/fuel_amount_tv" />
+
+    <TextView
+        android:id="@+id/fuel_amount_type_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Litara"
+        android:textColor="@color/color_light_grey"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fuel_amount_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fuel_amount_et"
+        app:layout_constraintTop_toTopOf="@+id/fuel_amount_et" />
+
+
+
+    <TextView
+        android:id="@+id/fuel_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Unesi cenu: "
+        android:textColor="@color/color_dark_grey"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/fuel_amount_tv" />
+
+    <EditText
+        android:id="@+id/fuel_price_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fuel_price_tv"
+        app:layout_constraintEnd_toStartOf="@+id/fuel_currency_tv"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fuel_price_tv"
+        app:layout_constraintTop_toTopOf="@+id/fuel_price_tv" />
+
+    <TextView
+        android:id="@+id/fuel_currency_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RSD"
+        android:textColor="@color/color_light_grey"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fuel_price_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fuel_price_et"
+        app:layout_constraintTop_toTopOf="@+id/fuel_price_et" />
+
+    <Button
+        android:id="@+id/add_log_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintEnd_toEndOf="@id/end_guideline"
+        android:text="Unesi novi zapis"
+        android:textColor="@color/color_white"
+        android:background="@drawable/roundedbutton"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="8dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="8dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
