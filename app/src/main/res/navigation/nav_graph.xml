@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/addNewLogFragment">
+    <fragment
+        android:id="@+id/logsFragment"
+        android:name="com.example.mojapotrosnja.screens.LogsFragment"
+        android:label="fragment_logs"
+        tools:layout="@layout/fragment_logs" />
+
+    <fragment
+        android:id="@+id/addNewLogFragment"
+        android:name="com.example.mojapotrosnja.screens.AddNewLogFragment"
+        android:label="fragment_add_new_log"
+        tools:layout="@layout/fragment_add_new_log" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.mojapotrosnja.screens.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

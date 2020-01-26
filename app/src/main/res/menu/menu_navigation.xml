@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/logsFragment"
+        android:icon="@drawable/ic_logs"
+        android:title="Logs"/>
+    <item
+        android:id="@+id/addNewLogFragment"
+        android:icon="@drawable/ic_launcer_icon"
+        android:iconTint="@color/color_orange"
+        android:title="My list"/>
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="Settings"/>
+</menu>
