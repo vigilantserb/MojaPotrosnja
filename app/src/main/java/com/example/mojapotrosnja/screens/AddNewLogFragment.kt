@@ -17,7 +17,7 @@ import com.example.mojapotrosnja.models.Car
 import com.example.mojapotrosnja.models.FuelLog
 import com.example.mojapotrosnja.utils.CarDataRepository
 import com.example.mojapotrosnja.utils.CsvFileManager
-import com.example.mojapotrosnja.utils.RequestPermissionUseCase
+import com.example.mojapotrosnja.utils.PermissionManager
 import com.example.mojapotrosnja.utils.SharedPreferencesManager
 import kotlinx.android.synthetic.main.fragment_add_new_log.*
 
@@ -25,10 +25,10 @@ import kotlinx.android.synthetic.main.fragment_add_new_log.*
  * A simple [Fragment] subclass.
  */
 class AddNewLogFragment : Fragment(), CarDataRepository.NewCarAddedListener,
-    RequestPermissionUseCase.Listener {
+    PermissionManager.Listener {
 
     lateinit var carDataRepository: CarDataRepository
-    lateinit var requestPermission: RequestPermissionUseCase
+    lateinit var permissionManager: PermissionManager
     lateinit var csvFileManager: CsvFileManager
 
     override fun onCreateView(
@@ -42,13 +42,13 @@ class AddNewLogFragment : Fragment(), CarDataRepository.NewCarAddedListener,
     override fun onStart() {
         super.onStart()
         carDataRepository.registerListener(this)
-        requestPermission.registerListener(this)
+        permissionManager.registerListener(this)
     }
 
     override fun onStop() {
         super.onStop()
         carDataRepository.unregisterListener(this)
-        requestPermission.unregisterListener(this)
+        permissionManager.unregisterListener(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,7 +62,7 @@ class AddNewLogFragment : Fragment(), CarDataRepository.NewCarAddedListener,
             )
         )
         displaySpinnerValues(carDataRepository.getCurrentCars())
-        requestPermission = RequestPermissionUseCase(activity)
+        permissionManager = PermissionManager(activity)
         csvFileManager = CsvFileManager()
         add_car.setOnClickListener {
             carDataRepository.addNewCar(Car("Volkswagen", "Golf MK4", "2003", "Diesel"))
@@ -76,7 +76,7 @@ class AddNewLogFragment : Fragment(), CarDataRepository.NewCarAddedListener,
     private fun requestWritePermissions() {
         val permissionsArray = ArrayList<String>()
         permissionsArray.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        requestPermission.requestPermissions(permissionsArray)
+        permissionManager.requestPermissions(permissionsArray)
     }
 
     override fun onNewCarAdded(carList: ArrayList<Car>) {

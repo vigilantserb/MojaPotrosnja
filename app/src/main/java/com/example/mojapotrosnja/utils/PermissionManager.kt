@@ -8,9 +8,9 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 
-class RequestPermissionUseCase(
+class PermissionManager(
     private val activity: Activity?
-): BaseObservable<RequestPermissionUseCase.Listener>() {
+): BaseObservable<PermissionManager.Listener>() {
 
     interface Listener{
         fun permissionsGranted()
