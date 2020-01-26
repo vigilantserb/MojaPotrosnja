@@ -22,10 +22,10 @@
 
     <TextView
         android:id="@+id/pick_car_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="Odaberi automobil:"
+        android:text="Aautomobil:"
         android:textColor="@color/color_dark_grey"
         android:textSize="16dp"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
@@ -50,7 +50,7 @@
 
     <ImageView
         android:id="@+id/add_car"
-        android:layout_width="32dp"
+        android:layout_width="50dp"
         android:layout_height="32dp"
         android:src="@drawable/ic_add"
         android:tint="@color/color_orange"
@@ -61,10 +61,10 @@
 
     <TextView
         android:id="@+id/fuel_amount_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="Unesi kolicinu: "
+        android:text="Kolicina:"
         android:textColor="@color/color_dark_grey"
         android:textSize="16dp"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
@@ -85,7 +85,7 @@
 
     <TextView
         android:id="@+id/fuel_amount_type_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="Litara"
         android:textColor="@color/color_light_grey"
@@ -101,10 +101,10 @@
 
     <TextView
         android:id="@+id/fuel_price_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="Unesi cenu: "
+        android:text="Cena: "
         android:textColor="@color/color_dark_grey"
         android:textSize="16dp"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
@@ -125,7 +125,7 @@
 
     <TextView
         android:id="@+id/fuel_currency_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="RSD"
         android:textColor="@color/color_light_grey"
