@@ -3,8 +3,10 @@ package com.example.mojapotrosnja.utils
 import android.os.Environment
 import android.util.Log
 import com.example.mojapotrosnja.models.FuelLog
+import com.opencsv.CSVReader
 import com.opencsv.CSVWriter
 import java.io.File
+import java.io.FileReader
 import java.io.FileWriter
 import java.io.IOException
 
@@ -27,15 +29,18 @@ class CsvFileManager {
         } catch (e: IOException) {
             Log.e(TAG, "An error occured while creating a CSV file: ", e)
         }
-        val csvWriter = CSVWriter(FileWriter(file))
+        val csvWriter = CSVWriter(FileWriter(file, true))
 
-        val column = arrayOf(
-            "carData",
-            "fuelAmount",
-            "fuelPrice",
-            "fuelDate"
-        )
-        csvWriter.writeNext(column)
+
+        if(!isFileAlreadyWritten(file)){
+            val column = arrayOf(
+                "carData",
+                "fuelAmount",
+                "fuelPrice",
+                "fuelDate"
+            )
+            csvWriter.writeNext(column)
+        }
 
         val array = arrayOf(
             fuelLog.carData,
@@ -45,5 +50,18 @@ class CsvFileManager {
         )
         csvWriter.writeNext(array)
         csvWriter.close()
+    }
+
+    private fun isFileAlreadyWritten(file: File): Boolean {
+        try {
+            val csvReader = CSVReader(FileReader(file))
+            val nextRecord = csvReader.readNext()
+            while (nextRecord != null) {
+                return nextRecord[0].contains("carData")
+            }
+        } catch (e: java.lang.Exception) {
+            println("An error occured while reading the CSV file.")
+        }
+        return false
     }
 }
