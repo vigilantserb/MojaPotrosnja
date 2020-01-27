@@ -2,12 +2,14 @@ package com.example.mojapotrosnja.screens
 
 
 import android.Manifest
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mojapotrosnja.R
@@ -20,12 +22,14 @@ import com.example.mojapotrosnja.utils.CsvFileManager
 import com.example.mojapotrosnja.utils.PermissionManager
 import com.example.mojapotrosnja.utils.SharedPreferencesManager
 import kotlinx.android.synthetic.main.fragment_add_new_log.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
  */
 class AddNewLogFragment : Fragment(), CarDataRepository.NewCarAddedListener,
-    PermissionManager.Listener {
+    PermissionManager.Listener, DatePickerDialog.OnDateSetListener {
 
     lateinit var carDataRepository: CarDataRepository
     lateinit var permissionManager: PermissionManager
@@ -61,6 +65,16 @@ class AddNewLogFragment : Fragment(), CarDataRepository.NewCarAddedListener,
                 )!!
             )
         )
+
+        val calendar = Calendar.getInstance()
+        val datePickerDialog = DatePickerDialog(
+            context!!,
+            this,
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
         displaySpinnerValues(carDataRepository.getCurrentCars())
         permissionManager = PermissionManager(activity)
         csvFileManager = CsvFileManager()
@@ -70,6 +84,9 @@ class AddNewLogFragment : Fragment(), CarDataRepository.NewCarAddedListener,
 
         add_log_btn.setOnClickListener {
             requestWritePermissions()
+        }
+        add_date.setOnClickListener {
+            datePickerDialog.show()
         }
     }
 
@@ -81,6 +98,10 @@ class AddNewLogFragment : Fragment(), CarDataRepository.NewCarAddedListener,
 
     override fun onNewCarAdded(carList: ArrayList<Car>) {
         displaySpinnerValues(carList)
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        pick_date_et.setText("$year - ${month + 1} - $dayOfMonth")
     }
 
     private fun displaySpinnerValues(carList: ArrayList<Car>) {
@@ -95,8 +116,14 @@ class AddNewLogFragment : Fragment(), CarDataRepository.NewCarAddedListener,
     }
 
     override fun permissionsGranted() {
-        Toast.makeText(context, "Permission granted. Writing...", Toast.LENGTH_SHORT).show()
-        csvFileManager.addFuelLog(FuelLog(spinner1.selectedItem.toString(), fuel_amount_et.text(), fuel_price_et.text(), "01-01-1970"))
+        csvFileManager.addFuelLog(
+            FuelLog(
+                spinner1.selectedItem.toString(),
+                fuel_amount_et.text(),
+                fuel_price_et.text(),
+                pick_date_et.text()
+            )
+        )
     }
 
     override fun permissionNotGranted() {
