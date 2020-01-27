@@ -15,7 +15,7 @@ class CsvFileManager {
     private val TAG = CsvFileManager::class.java.canonicalName
 
     fun addFuelLog(fuelLog: FuelLog) {
-        val file = createCsvFile()
+        val file = getCsvFile()
         val csvWriter = CSVWriter(FileWriter(file, true))
 
         if(!isFileAlreadyWritten(file)){
@@ -38,14 +38,40 @@ class CsvFileManager {
         csvWriter.close()
     }
 
-    private fun createCsvFile(): File {
+    fun getFuelLogs(): ArrayList<FuelLog> {
+        val fuelLogList = ArrayList<FuelLog>()
+        try {
+            val reader =
+                FileReader(getCsvFile())
+            val csvReader = CSVReader(reader)
+            var nextRecord = csvReader.readNext()
+            while (nextRecord != null) {
+                if (!nextRecord[0].contains("carData"))
+                    fuelLogList.add(
+                        FuelLog(
+                            nextRecord[0],
+                            nextRecord[1],
+                            nextRecord[2],
+                            nextRecord[3]
+                        )
+                    )
+                nextRecord = csvReader.readNext()
+            }
+            return fuelLogList
+        } catch (e: java.lang.Exception) {
+            println("An error occured while reading the CSV file.")
+        }
+        return fuelLogList
+
+    }
+
+    private fun getCsvFile(): File {
         val exportDir = File(Environment.getExternalStorageDirectory().path)
         if (!exportDir.exists()) {
             exportDir.mkdirs()
         }
 
         val file = File(exportDir, "FuelLogs.csv")
-
 
         try {
             if (!file.exists())

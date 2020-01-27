@@ -101,7 +101,7 @@ class AddNewLogFragment : Fragment(), CarDataRepository.NewCarAddedListener,
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        pick_date_et.setText("$year - ${month + 1} - $dayOfMonth")
+        pick_date_et.setText("$year-${month + 1}-$dayOfMonth")
     }
 
     private fun displaySpinnerValues(carList: ArrayList<Car>) {
