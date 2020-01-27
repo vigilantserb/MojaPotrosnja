@@ -25,7 +25,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="Aautomobil:"
+        android:text="Automobil:"
         android:textColor="@color/color_dark_grey"
         android:textSize="16dp"
         app:layout_constraintStart_toEndOf="@id/start_guideline"
@@ -136,6 +136,42 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/fuel_price_et"
         app:layout_constraintTop_toTopOf="@+id/fuel_price_et" />
+
+
+    <TextView
+        android:id="@+id/pick_date_tv"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Datum:"
+        android:textColor="@color/color_dark_grey"
+        android:textSize="16dp"
+        app:layout_constraintStart_toEndOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/fuel_price_tv" />
+
+    <EditText
+        android:id="@+id/pick_date_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pick_date_tv"
+        app:layout_constraintEnd_toStartOf="@+id/add_date"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/pick_date_tv"
+        app:layout_constraintTop_toTopOf="@+id/pick_date_tv" />
+
+    <ImageView
+        android:id="@+id/add_date"
+        android:layout_width="50dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_add"
+        android:tint="@color/color_orange"
+        app:layout_constraintBottom_toBottomOf="@+id/pick_date_et"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintStart_toEndOf="@+id/pick_date_et"
+        app:layout_constraintTop_toTopOf="@+id/pick_date_et" />
 
     <Button
         android:id="@+id/add_log_btn"

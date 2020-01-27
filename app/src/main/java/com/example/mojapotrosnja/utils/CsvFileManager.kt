@@ -15,22 +15,8 @@ class CsvFileManager {
     private val TAG = CsvFileManager::class.java.canonicalName
 
     fun addFuelLog(fuelLog: FuelLog) {
-        val exportDir = File(Environment.getExternalStorageDirectory().path)
-        if (!exportDir.exists()) {
-            exportDir.mkdirs()
-        }
-
-        val file = File(exportDir, "FuelLogs.csv")
-
-
-        try {
-            if (!file.exists())
-                file.createNewFile()
-        } catch (e: IOException) {
-            Log.e(TAG, "An error occured while creating a CSV file: ", e)
-        }
+        val file = createCsvFile()
         val csvWriter = CSVWriter(FileWriter(file, true))
-
 
         if(!isFileAlreadyWritten(file)){
             val column = arrayOf(
@@ -50,6 +36,24 @@ class CsvFileManager {
         )
         csvWriter.writeNext(array)
         csvWriter.close()
+    }
+
+    private fun createCsvFile(): File {
+        val exportDir = File(Environment.getExternalStorageDirectory().path)
+        if (!exportDir.exists()) {
+            exportDir.mkdirs()
+        }
+
+        val file = File(exportDir, "FuelLogs.csv")
+
+
+        try {
+            if (!file.exists())
+                file.createNewFile()
+        } catch (e: IOException) {
+            Log.e(TAG, "An error occured while creating a CSV file: ", e)
+        }
+        return file
     }
 
     private fun isFileAlreadyWritten(file: File): Boolean {
