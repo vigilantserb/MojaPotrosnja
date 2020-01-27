@@ -15,6 +15,10 @@ class CarDataRepository(
         notifyListeners(sharedPreferencesManager.addNewCarToList(car))
     }
 
+    fun getCurrentCars(): ArrayList<Car> {
+        return sharedPreferencesManager.getCarList()
+    }
+
     private fun notifyListeners(carList: ArrayList<Car>) {
         listeners.forEach {
             it.onNewCarAdded(carList)

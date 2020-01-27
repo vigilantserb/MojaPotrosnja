@@ -24,7 +24,7 @@ class SharedPreferencesManager(
         return getCarList()
     }
 
-    private fun getCarList(): ArrayList<Car> {
+    fun getCarList(): ArrayList<Car> {
         val json = sharedPreferences.getString(CAR_TAG, null)
         val type = object : TypeToken<ArrayList<Car>>() {}.type
         return gson.fromJson(json, type) as? ArrayList<Car> ?: return ArrayList()
